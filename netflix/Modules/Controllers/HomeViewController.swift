@@ -67,51 +67,51 @@ class HomeViewController: UIViewController {
     }
     
     func fetchData() {
-//
-//        APICaller.shared.apiCall(url: APIpath.getTrendingTv.url) { result in
-//            switch result{
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//        APICaller.shared.apiCall(url: APIpath.getTrendingMovie.url) { result in
-//            switch result{
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//        APICaller.shared.apiCall(url: APIpath.getUpcomming.url) { result in
-//            switch result{
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//        APICaller.shared.apiCall(url: APIpath.getPopular.url) { result in
-//            switch result{
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//        APICaller.shared.apiCall(url: APIpath.getTopRated.url) { result in
-//            switch result{
-//            case .success(let movies):
-//                print(movies)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
+
+        APICaller.shared.apiCall(apiPath: .getTrendingTv) { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        APICaller.shared.apiCall(apiPath: .getTrendingMovie) { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        APICaller.shared.apiCall(apiPath: .getUpcomming) { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        APICaller.shared.apiCall(apiPath: .getPopular) { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+        APICaller.shared.apiCall(apiPath: .getTopRated) { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         
     }
     

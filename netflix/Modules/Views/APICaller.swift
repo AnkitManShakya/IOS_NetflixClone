@@ -60,8 +60,8 @@ enum APIpath {
 class APICaller {
     static let shared = APICaller()
     
-    func apiCall (url: String, completion: @escaping (Result< [Movie] , Error >) -> Void ) {
-        guard let url = URL(string: url) else { return }
+    func apiCall (apiPath: APIpath, completion: @escaping (Result< [Movie] , Error >) -> Void ) {
+        guard let url = URL(string: apiPath.url) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else { return }
             do {
