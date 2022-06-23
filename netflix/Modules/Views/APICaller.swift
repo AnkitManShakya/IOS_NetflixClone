@@ -17,30 +17,55 @@ enum APIError: Error {
 }
 
 enum APIpath {
-    case getTrending
+    case getTrendingMovie
+    case getTrendingTv
+    case getUpcomming
+    case getPopular
+    case getTopRated
     
     var path: String {
         switch self {
-        case .getTrending:
-            return "/3/trending/all/day?api_key="
+        case .getTrendingMovie:
+            return "/3/trending/movie/day?api_key="
+        case .getTrendingTv:
+            return "/3/trending/tv/day?api_key="
+        case.getUpcomming:
+            return "/3/movie/upcoming?api_key="
+        case.getPopular:
+            return "/3/movie/popular?api_key="
+        case .getTopRated:
+            return "/3/movie/top_rated?api_key="
+        }
+    }
+    
+    var edingPath: String {
+        switch self{
+        case .getUpcomming:
+            return "&language=en-US&page=1"
+        case .getPopular:
+            return "&language=en-US&page=1"
+        case .getTopRated:
+            return "&language=en-US&page=1"
+        default:
+            return ""
         }
     }
     
     var url: String {
-            return Constants.baseURL+self.path+Constants.API_KEY
+        return Constants.baseURL + self.path+Constants.API_KEY + self.edingPath
     }
+    
 }
 
 class APICaller {
     static let shared = APICaller()
     
-    func getTrendingMovies(completion: @escaping(Result<[Movie], Error>) -> Void) {
-        guard let url = URL(string: APIpath.getTrending.url) else { return }
+    func apiCall (url: String, completion: @escaping (Result< [Movie] , Error >) -> Void ) {
+        guard let url = URL(string: url) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else { return }
             do {
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-//                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 completion(.success(results.results))
             } catch {
                 print(error.localizedDescription)
@@ -49,4 +74,5 @@ class APICaller {
         }
         task.resume()
     }
+    
 }

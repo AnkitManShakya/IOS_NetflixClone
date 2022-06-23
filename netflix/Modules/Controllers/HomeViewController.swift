@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - Properties
     
-    let sectionTitles: [String] = ["Trending Movies", "Popular" , "Trending TV", "Upcomming Movies", "Top Rated"]
+    let sectionTitles: [String] = ["Trending Movies",  "Trending TV", "Popular" , "Upcomming Movies", "Top Rated"]
     
     let homefeedTable: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         setupNavigationBar()
         setupUI()
         setupDelegates()
-        getTrendingMovies()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         leftBarButtonItem.customView?.widthAnchor.constraint(equalToConstant: 40).isActive = true
         navigationItem.leftBarButtonItem = leftBarButtonItem
-    
+        
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
@@ -66,15 +66,53 @@ class HomeViewController: UIViewController {
         view.addSubview(homefeedTable)
     }
     
-    func getTrendingMovies() {
-        APICaller.shared.getTrendingMovies { result in
-            switch result{
-            case .success(let movies):
-                print(movies)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+    func fetchData() {
+//
+//        APICaller.shared.apiCall(url: APIpath.getTrendingTv.url) { result in
+//            switch result{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        APICaller.shared.apiCall(url: APIpath.getTrendingMovie.url) { result in
+//            switch result{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        APICaller.shared.apiCall(url: APIpath.getUpcomming.url) { result in
+//            switch result{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        APICaller.shared.apiCall(url: APIpath.getPopular.url) { result in
+//            switch result{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        APICaller.shared.apiCall(url: APIpath.getTopRated.url) { result in
+//            switch result{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+        
     }
     
 }
@@ -113,7 +151,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         header.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y , width: header.bounds.width, height: header.bounds.height)
         header.textLabel?.textColor = .label
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
