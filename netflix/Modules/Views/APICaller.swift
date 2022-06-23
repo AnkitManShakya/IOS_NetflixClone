@@ -75,4 +75,19 @@ class APICaller {
         task.resume()
     }
     
+//    func genericCall<T: Codable> (apiPath: APIpath, completion: @escaping (_ response: Result<T , Error>) -> Void ) {
+//        guard let url = URL(string: apiPath.url) else { return }
+//        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+//            guard let data = data, error == nil else { return }
+//            do {
+//                let result = try JSONDecoder().decode(T.self, from: data)
+//                completion(.success(result))
+//            } catch {
+//                print(error.localizedDescription)
+//                completion(.failure(error))
+//            }
+//        }
+//        task.resume()
+//    }
+    
 }
