@@ -23,23 +23,26 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.addSubview(collectionView)
-        
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-
+        setupUI()
+        setupDelegates()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        
+        fatalError("init(coder:) has not been implemented") 
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
+    }
+    
+    private func setupUI() {
+        contentView.addSubview(collectionView)
+    }
+    
+    private func setupDelegates() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
 }
@@ -50,12 +53,10 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         10
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .green
         return cell
     }
-    
     
 }

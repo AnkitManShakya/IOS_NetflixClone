@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     
     //MARK: - Properties
     
+    let sectionTitles: [String] = ["Trending Movies", "Popular" , "Trending TV", "Upcomming Movies", "Top Rated"]
+    
     let homefeedTable: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
@@ -24,21 +26,56 @@ class HomeViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        homefeedTable.delegate = self
-        homefeedTable.dataSource = self
-        homefeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
-        view.addSubview(homefeedTable)
-        
+        setupNavigationBar()
+        setupUI()
+        setupDelegates()
+        getTrendingMovies()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homefeedTable.frame = view.bounds
-
     }
     
     //MARK: - Helpers
+    
+    private func setupNavigationBar() {
+        let nexflixLogo = UIImage(named: "netflixLogo")
+        let leftButton = UIButton(type: .custom)
+        leftButton.setImage(nexflixLogo, for: .normal)
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        leftBarButtonItem.customView?.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+    
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
+        ]
+        
+        navigationController?.navigationBar.tintColor = .label
+    }
+    
+    private func setupDelegates() {
+        homefeedTable.delegate = self
+        homefeedTable.dataSource = self
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        homefeedTable.tableHeaderView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        view.addSubview(homefeedTable)
+    }
+    
+    func getTrendingMovies() {
+        APICaller.shared.getTrendingMovies { result in
+            switch result{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
 }
 
@@ -46,7 +83,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        20
+        sectionTitles.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,5 +104,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         200
     }
     
-   
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sectionTitles[section]
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        header.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y , width: header.bounds.width, height: header.bounds.height)
+        header.textLabel?.textColor = .label
+        header.textLabel?.text = header.textLabel?.text?.lowercased()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defauleOffset = view.safeAreaInsets.top
+        let offset = scrollView.contentOffset.y + defauleOffset
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
 }

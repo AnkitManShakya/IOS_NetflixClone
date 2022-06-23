@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BADC6331286354C30018EF73 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC6330286354C30018EF73 /* HeroHeaderUIView.swift */; };
+		BADC6333286426130018EF73 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC6332286426130018EF73 /* APICaller.swift */; };
+		BADC633628642D880018EF73 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC633528642D880018EF73 /* Movies.swift */; };
+		BADC6338286433B30018EF73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC6337286433B30018EF73 /* Extensions.swift */; };
 		BC6E269128606B9700DE8741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6E269028606B9700DE8741 /* AppDelegate.swift */; };
 		BC6E269328606B9700DE8741 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6E269228606B9700DE8741 /* SceneDelegate.swift */; };
 		BC6E269528606B9700DE8741 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6E269428606B9700DE8741 /* MainTabBarViewController.swift */; };
@@ -42,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BADC6330286354C30018EF73 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
+		BADC6332286426130018EF73 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APICaller.swift; path = netflix/Modules/Views/APICaller.swift; sourceTree = SOURCE_ROOT; };
+		BADC633528642D880018EF73 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
+		BADC6337286433B30018EF73 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BC6E268D28606B9700DE8741 /* netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6E269028606B9700DE8741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC6E269228606B9700DE8741 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,8 +100,17 @@
 			isa = PBXGroup;
 			children = (
 				BC8A1A7C286330AA00CA8D7B /* CollectionViewTableViewCell.swift */,
+				BADC6330286354C30018EF73 /* HeroHeaderUIView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BADC633428642B280018EF73 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BADC633528642D880018EF73 /* Movies.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BC6E268428606B9700DE8741 = {
@@ -119,6 +136,7 @@
 		BC6E268F28606B9700DE8741 /* netflix */ = {
 			isa = PBXGroup;
 			children = (
+				BADC633428642B280018EF73 /* Models */,
 				BC8A1A7B28632B5300CA8D7B /* Reusables */,
 				BC8A1A7A28632AFE00CA8D7B /* Managers */,
 				BC8A1A7928632AF300CA8D7B /* Resources */,
@@ -172,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				BC6E269C28606B9800DE8741 /* Assets.xcassets */,
+				BADC6337286433B30018EF73 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -179,6 +198,7 @@
 		BC8A1A7A28632AFE00CA8D7B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				BADC6332286426130018EF73 /* APICaller.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -338,9 +358,13 @@
 				BC79369B2860E0F000E71B09 /* DownloadsViewController.swift in Sources */,
 				BC7936952860E0AD00E71B09 /* HomeViewController.swift in Sources */,
 				BC6E269528606B9700DE8741 /* MainTabBarViewController.swift in Sources */,
+				BADC6333286426130018EF73 /* APICaller.swift in Sources */,
 				BC6E269128606B9700DE8741 /* AppDelegate.swift in Sources */,
+				BADC6331286354C30018EF73 /* HeroHeaderUIView.swift in Sources */,
+				BADC633628642D880018EF73 /* Movies.swift in Sources */,
 				BC6E269B28606B9700DE8741 /* netflix.xcdatamodeld in Sources */,
 				BC6E269328606B9700DE8741 /* SceneDelegate.swift in Sources */,
+				BADC6338286433B30018EF73 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
